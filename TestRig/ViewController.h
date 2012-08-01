@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIWebViewDelegate>
+
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
+
+- (IBAction)click:(id)sender;
 
 @end
