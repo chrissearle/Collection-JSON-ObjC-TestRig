@@ -10,8 +10,10 @@
 
 @interface ViewController : UIViewController <UIWebViewDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet UITextField *textField;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 
 - (IBAction)click:(id)sender;
+- (IBAction)reset:(id)sender;
 
 @end

@@ -18,6 +18,14 @@
 @implementation ViewController
 
 @synthesize webView;
+@synthesize textField;
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [textField setText:@"http://employee.herokuapp.com/"];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -89,7 +97,11 @@
 }
 
 - (void)fetchedData:(NSData *)responseData {
-    [self.webView loadHTMLString:[self buildPage:[CJCollection collectionForNSData:responseData]] baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+    CJCollection *collection = [CJCollection collectionForNSData:responseData];
+    
+    [textField setText:collection.href.absoluteString];
+
+    [self.webView loadHTMLString:[self buildPage:collection] baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
 }
 
 - (void)fetch:(NSURL *)url {
@@ -101,7 +113,11 @@
 }
 
 - (IBAction)click:(id)sender {
-    [self fetch:[NSURL URLWithString: @"http://employee.herokuapp.com/"]];
+    [self fetch:[NSURL URLWithString: [textField text]]];
+}
+
+- (IBAction)reset:(id)sender {
+    [textField setText:@"http://employee.herokuapp.com/"];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
