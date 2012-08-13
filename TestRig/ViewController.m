@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
     
-    [textField setText:@"http://employee.herokuapp.com/"];
+    [textField setText:@"http://test.java.no/ems-redux/server/"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
